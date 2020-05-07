@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react';
 import './MenuItem.scss';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-const MenuItem = ({ title, imageUrl, size, history, match }) => {
+const MenuItem = ({
+    sections: { id, title, imageUrl, size, history, match },
+}) => {
     return (
         <Fragment>
-            <div
-                className={`${size} menu-item`}
-                onClick={() => history.push(`${match.url}and`)}
-            >
+            <Link className={`${size} menu-item`} to={`/category/${title}`}>
                 <div
                     style={{ backgroundImage: `url(${imageUrl})` }}
                     className="background-image"
@@ -17,7 +16,7 @@ const MenuItem = ({ title, imageUrl, size, history, match }) => {
                     <h1 className="title">{title.toUpperCase()}</h1>
                     <span className="subtitle">SHOP NOW</span>
                 </div>
-            </div>
+            </Link>
         </Fragment>
     );
 };
